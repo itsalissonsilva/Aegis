@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aegis"
+version = "0.1.0"
+description = "Cryptography audit MCP server"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "mcp>=1.10.0",
+]
+
+[project.scripts]
+aegis = "aegis.server:main"
+
+[tool.setuptools]
+packages = ["aegis"]

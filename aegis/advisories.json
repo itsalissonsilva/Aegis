@@ -1,0 +1,49 @@
+{
+  "advisories": [
+    {
+      "package": "pycrypto",
+      "ecosystem": "pypi",
+      "affected": ["*"],
+      "severity": "high",
+      "id": "AEGIS-2026-0001",
+      "summary": "PyCrypto is unmaintained and should not be used for new cryptographic work.",
+      "reference": "https://www.pycrypto.org/"
+    },
+    {
+      "package": "node-forge",
+      "ecosystem": "npm",
+      "affected": ["<1.3.2"],
+      "severity": "medium",
+      "id": "AEGIS-2026-0002",
+      "summary": "Older node-forge deployments commonly preserve legacy RSA and TLS usage patterns that need review.",
+      "reference": "https://github.com/digitalbazaar/forge"
+    },
+    {
+      "package": "jsonwebtoken",
+      "ecosystem": "npm",
+      "affected": ["<9.0.0"],
+      "severity": "medium",
+      "id": "AEGIS-2026-0003",
+      "summary": "Older jsonwebtoken deployments require review for algorithm confusion and validation misuse.",
+      "reference": "https://github.com/auth0/node-jsonwebtoken"
+    },
+    {
+      "package": "pyjwt",
+      "ecosystem": "pypi",
+      "affected": ["<2.4.0"],
+      "severity": "medium",
+      "id": "AEGIS-2026-0004",
+      "summary": "Older JWT libraries need careful review for algorithm allowlists and key validation.",
+      "reference": "https://pyjwt.readthedocs.io/"
+    },
+    {
+      "package": "openssl",
+      "ecosystem": "cargo",
+      "affected": ["<0.10.60"],
+      "severity": "medium",
+      "id": "AEGIS-2026-0005",
+      "summary": "Older OpenSSL bindings deserve review for modern TLS posture and provider usage.",
+      "reference": "https://github.com/sfackler/rust-openssl"
+    }
+  ]
+}

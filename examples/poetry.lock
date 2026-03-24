@@ -1,0 +1,11 @@
+[[package]]
+name = "pycrypto"
+version = "2.6.1"
+
+[[package]]
+name = "pyjwt"
+version = "2.3.0"
+
+[[package]]
+name = "cryptography"
+version = "42.0.0"

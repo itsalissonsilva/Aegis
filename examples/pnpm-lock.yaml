@@ -1,0 +1,7 @@
+lockfileVersion: "9.0"
+
+packages:
+  /libsodium-wrappers@0.7.13:
+    resolution: {integrity: sha512-demo}
+  /jsonwebtoken@9.0.2:
+    resolution: {integrity: sha512-demo}

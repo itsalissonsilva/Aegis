@@ -1,0 +1,9 @@
+version = 3
+
+[[package]]
+name = "openssl"
+version = "0.10.54"
+
+[[package]]
+name = "rustls"
+version = "0.23.4"

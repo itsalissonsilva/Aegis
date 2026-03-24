@@ -1,0 +1,8 @@
+[package]
+name = "aegis-rust-sample"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+openssl = "0.10"
+rustls = "0.23"

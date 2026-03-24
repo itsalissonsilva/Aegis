@@ -1,0 +1,24 @@
+{
+  "_meta": {
+    "hash": {
+      "sha256": "demo"
+    },
+    "pipfile-spec": 6,
+    "requires": {
+      "python_version": "3.11"
+    }
+  },
+  "default": {
+    "pyjwt": {
+      "version": "==2.3.0"
+    },
+    "argon2-cffi": {
+      "version": "==23.1.0"
+    }
+  },
+  "develop": {
+    "pycrypto": {
+      "version": "==2.6.1"
+    }
+  }
+}
