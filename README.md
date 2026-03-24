@@ -20,26 +20,16 @@ It is built to work well on real repos and real endpoints:
 - `scan_codebase`
   - Static scan for cryptographic algorithms, JOSE/JWT algorithm identifiers,
     weak key guidance, and PQ algorithm references in source and docs.
-  - Example repos:
-    - `jmw5598/node-express-jwt-example`
-    - `open-quantum-safe/oqs-provider`
-    - `GiacomoPope/kyber-py`
 - `probe_tls_endpoint`
   - Active TLS probe for direct TLS and upgrade-based protocols.
   - Supported modes today: `none`, `smtp`, `imap`, `ftp`, `postgres`,
     `mysql`, `ldap`, `pop3`, `xmpp`.
-  - Example live target tested: `github.com:443`
 - `audit_config`
   - Checks crypto-related settings in SSH, nginx, OpenSSL, JWT-style configs,
     and Kubernetes Secret-style files.
-  - Example repo:
-    - `jmw5598/node-express-jwt-example` with `config/jwt.js`
 - `scan_dependencies`
   - Parses common manifests and lockfiles and annotates packages with crypto
     usage, local advisory hits, PQ posture hints, and upgrade guidance.
-  - Example repos:
-    - `jmw5598/node-express-jwt-example` via `package.json`
-    - `GiacomoPope/kyber-py` via `pyproject.toml`
 
 ### Analysis
 
@@ -51,6 +41,40 @@ It is built to work well on real repos and real endpoints:
 - `generate_inventory`
 - `get_migration_roadmap`
 - `get_delta_report`
+
+## Quick Testing
+
+If you want to test Aegis quickly, clone one of these repos locally first and
+then run `scan_codebase`, `scan_dependencies`, and `audit_config` against it.
+
+- `jmw5598/node-express-jwt-example`
+  - Good for weak classical crypto posture.
+  - Aegis surfaced weak `512-bit RSA` guidance in the README and `RS256` in
+    `config/jwt.js`.
+- `open-quantum-safe/oqs-provider`
+  - Good for mixed classical and post-quantum posture.
+  - Aegis surfaced `X25519`, `ECDH-P256`, `RSA-2048`, `ML-KEM-768`, and
+    `ML-DSA-65`.
+- `GiacomoPope/kyber-py`
+  - Good for clear PQ-positive references.
+  - Aegis surfaced multiple `ML-KEM-768` references in docs and source.
+
+Example:
+
+```powershell
+git clone https://github.com/jmw5598/node-express-jwt-example.git
+```
+
+Then in Cursor or another MCP client:
+
+- run `scan_codebase` on the repo root
+- run `scan_dependencies` on the repo manifest
+- run `audit_config` on the config folder
+- generate an inventory from the resulting scan IDs
+
+For live endpoint testing, a simple target is:
+
+- `github.com:443`
 
 ## What It Catches Well
 
