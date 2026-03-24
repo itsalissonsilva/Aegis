@@ -20,16 +20,26 @@ It is built to work well on real repos and real endpoints:
 - `scan_codebase`
   - Static scan for cryptographic algorithms, JOSE/JWT algorithm identifiers,
     weak key guidance, and PQ algorithm references in source and docs.
+  - Example repos:
+    - `jmw5598/node-express-jwt-example`
+    - `open-quantum-safe/oqs-provider`
+    - `GiacomoPope/kyber-py`
 - `probe_tls_endpoint`
   - Active TLS probe for direct TLS and upgrade-based protocols.
   - Supported modes today: `none`, `smtp`, `imap`, `ftp`, `postgres`,
     `mysql`, `ldap`, `pop3`, `xmpp`.
+  - Example live target tested: `github.com:443`
 - `audit_config`
   - Checks crypto-related settings in SSH, nginx, OpenSSL, JWT-style configs,
     and Kubernetes Secret-style files.
+  - Example repo:
+    - `jmw5598/node-express-jwt-example` with `config/jwt.js`
 - `scan_dependencies`
   - Parses common manifests and lockfiles and annotates packages with crypto
     usage, local advisory hits, PQ posture hints, and upgrade guidance.
+  - Example repos:
+    - `jmw5598/node-express-jwt-example` via `package.json`
+    - `GiacomoPope/kyber-py` via `pyproject.toml`
 
 ### Analysis
 
@@ -140,6 +150,16 @@ Example prompts in Cursor:
 - `Audit configs under C:\repo\my-app\config`
 - `Generate an inventory from the last three scans grouped by severity`
 - `Create a migration roadmap from that inventory`
+
+Repos we tested this workflow against:
+
+- `jmw5598/node-express-jwt-example`
+  - surfaced weak `512-bit RSA` guidance and `RS256` JWT config
+- `open-quantum-safe/oqs-provider`
+  - surfaced mixed classical and PQ references like `X25519`, `RSA-2048`,
+    `ML-KEM-768`, and `ML-DSA-65`
+- `GiacomoPope/kyber-py`
+  - surfaced strong PQ-positive `ML-KEM-768` references
 
 ### Probe a live endpoint
 
